@@ -1,4 +1,4 @@
-﻿/**
+/**
  * this file was compiled by jsbuild 0.9.6
  * @date Fri, 20 Jul 2012 16:21:18 UTC
  * @author dron
