@@ -172,39 +172,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>事务定义：</p>
-<p>事务是作为单个逻辑单元执行的一系列操作，它是一个不可分割的工作逻辑单元。它包含了一组数据库操作命令，这组命令要么全部执行，要么全部不执行。</p>
-<p>举个例子，我们经常用到的 ATM 存取款机，比如转账的时候，是先减去转出账户的金额，然后再在指定转入账户的金额加上转出的金额。如果刚好这个时候转出的操作已经执行完成，但是由于系统的故障，导致转入的操作失败了。那么怎么办？这就需要用到事务了，只要事务里面有一条命令未成功执行，那么数据就会回滚到事务开始之前的状态。</p>
-<p>事务特性：</p>
-<p>1、原子性（Atomicity）：事务是一个完整的操作， 事务中所有操作命令必须作为一个整体提交或回滚。如果事务中任何操作命令失败，则整个事务将因失败而回滚。</p>
-<p>2、一致性（Consistency）：当事务完成时，数据都处于一致状态。</p>
-<p>3、隔离性（Isolation）： 对数据进行修改的所有并发事务是彼此隔离的，它不以任何方式依赖或影响其他事务。</p>
-<p>4、持久性（Durability）：事务提交之后，数据是永久性的，不可再回滚。</p>
-<p>事务操作：</p>
-<p>1、begin transaction：开始事务。</p>
-<p>2、commit transaction：提交事务。</p>
-<p>3、rollback transaction：回滚事务。</p>
-<p>4、save transaction：事务保存点。即事务回滚时，可以指定回滚到保存点，而不进行全部回滚。</p>
-<p>事务分类：</p>
-<p>1、显式事务：用 begin transaction 明确指定事务的开始，由 commit transaction 提交事务、rollback transaction 回滚事务到事务结束。</p>
-<p>2、隐式事务：通过设置 set implicit_transactions on 语句，将隐式事务模式设置为打开。当以隐式事务模式操作时，不必使用 begin transaction 开启事务，当一个事务结束后，这个模式会自动启用下一个事务，只需使用 commit transaction 提交事务或 Rollback Transaction 回滚事务即可。</p>
-<p>3、自动提交事务： 这是 SQL Server 的默认模式，它将每条单独的 T-SQL 语句视为一个事务。如果成功执行，则自动提交。如果错误，则自动回滚。</p>
-<pre><code>begin tran        -- 开启事务，transcation 的简写</code></pre><p> declare @errorNo int    –定义变量，用于记录事务执行过程中的错误次数<br> set @errorNo=0<br> begin try<br>     update Student set C_S_Id=’2’ where S_StuNo=’003’<br>     set @errorNo=@errorNo+@@ERROR<br>     select ‘S_StuNo=003 已经修改啦’</p>
-<pre><code>update Student set C_S_Id=&apos;3&apos; where S_StuNo=&apos;002&apos; 
-set @errorNo=@errorNo+@@ERROR            -- @@ERROR 系统全局变量，记录错误次数，出现一次错误 @@ERROR 值+1
-select &apos;S_StuNo=002 已经修改啦&apos;
-
-if(@errorNo&gt;0)
-begin
-    --抛出自定义的异常,在最后的catch块中统一处理异常
-    RAISERROR(233333,16,3)
-end</code></pre><p> end try<br> begin catch<br>     select ERROR_NUMBER() errorNumber,        –错误代码<br>            ERROR_SEVERITY() errorSeverity,    –错误严重级别，级别小于10 try catch 捕获不到<br>            ERROR_STATE() errorState,        –错误状态码<br>            ERROR_PROCEDURE() errorProcedure,    –出现错误的存储过程或触发器的名称<br>            ERROR_LINE() errorLine,        –发生错误的行号<br>            ERROR_MESSAGE() errorMessage        –错误的具体信息</p>
-<pre><code>if(@@trancount&gt;0)    -- @@trancount 系统全局变量，事务开启 @@trancount 值+1，判断事务是否开启
-begin
-    rollback tran;        -- 回滚事务
-end</code></pre><p> end catch</p>
-<p> if(@@trancount&gt;0)<br> begin<br>     commit tran;        – 提交事务<br> end</p>
-<p> select * from Student</p>
+        <p>SQL Server 事务语法<br>　　事务全部是关于原子性的。原子性的概念是指可以把一些事情当做一个单元来看待。从数据库的角度看，它是指应全部执行或全部都不执行的一条或多条语句的最小组合。<br>为了理解事务的概念，需要能够定义非常明确的边界。事务要有非常明确的开始和结束点。SQL Server中的每一条SELECT、INSERT、UPDATE和DELETE语句都是隐式事务的一部分。即使只发出一条语句，也会把这条语句当做一个事务-要么执行语句中的所有内容，要么什么都不执行。但是如果需要的不只是一条，可能是多条语句呢？在这种情况下，就需要有一种方法来标记事务的开始和结束，以及事务的成功或失败。可以使用一些T-SQL语句在事务中”标记”这些点。</p>
+<p>BEGIN TRAN:设置起始点。<br>COMMIT TRAN:使事务成为数据库中永久的、不可逆转的一部分。<br>ROLLBACK TRAN:本质上说想要忘记它曾经发生过。<br>SAVE TRAN:创建一个特定标记符，只允许部分回滚。<br>一、BEGIN TRAN<br>　　事务的开始可能是事务过程中最容易理解的概念。它唯一的目的就是表示一个单元的开始。如果由于某种原因，不能或者不想提交事务，那么这就是所有数据库活动将要回滚的起点。也就是说，数据库会忽略这个起点之后的最终没有提交的所有语句。</p>
+<p>　　语法如下：</p>
+<p>　　BEGIN TRAN[SACTION] [ <transaction name> | &lt;@transaction variable&gt; ]<br>　　[ WITH MARK [&lt;’description’&gt;] ]<br>二、COMMIT TRAN<br>　　事务的提交是一个事务的终点。当发出COMMIT TRAN命令时，可以认为该事务是持久的。也就是说，事务的影响现在是持久的并会持续，即使发生系统故障也不受影响(只要有备份或者数据库文件没有被物理破坏就行)。撤销已完成事务的唯一方法是发出一个新的事务。从功能上而言，该事务是对第一个事务的反转。</transaction></p>
+<p>　　COMMIT TRAN语法如下：</p>
+<p>　　COMMIT TRAN[SACTION] [<transaction name> | &lt;@transaction variable&gt;]<br>三、ROLLBACK TRAN<br>　　ROLLBACK做的事情是回到起点。从关联的BEGIN语句开始发生的任何事情事实上都会被忘记。</transaction></p>
+<p>　　除了允许保存点外，ROLLBACK的语法看上去和BEGIN或COMMIT语句一样：</p>
+<p>　　ROLLBACK TRAN[SACTION] [ <transaction name> | <save point name> | &lt;@transaction variable&gt; | &lt;@savepoint variable&gt; ]<br>四、SAVE TRAN<br>　　保存事务从本质上说就是创建书签(bookmark)。为书签建立一个名称，在建立了”书签”之后，可以在回滚中引用它。创建书签的好处是可以回滚到代码中的特定点上-只要为想要回滚到的那个保存点命名。</save></transaction></p>
+<p>　　语法如下：</p>
+<p>　　SAVE TRAN[SCATION] [ <save point name> | &lt;@savepoint variable&gt; ]
+ 　　</save></p>
+<p>复制代码<br>BEGIN TRAN Tran_Money    –开始事务</p>
+<p>DECLARE @tran_error int;<br>SET @tran_error = 0;<br>    BEGIN TRY<br>        UPDATE tb_Money SET MyMoney = MyMoney - 30 WHERE Name = ‘刘备’;<br>        SET @tran_error = @tran_error + @@ERROR;<br>        –测试出错代码，看看刘备的钱减少，关羽的钱是否会增加<br>        –SET @tran_error = 1;<br>        UPDATE tb_Money SET MyMoney = MyMoney + 30 WHERE Name = ‘关羽’;<br>        SET @tran_error = @tran_error + @@ERROR;<br>    END TRY</p>
+<p>BEGIN CATCH<br>    PRINT ‘出现异常，错误编号：’ + convert(varchar,error_number()) + ‘,错误消息：’ + error_message()<br>    SET @tran_error = @tran_error + 1<br>END CATCH</p>
+<p>IF(@tran_error &gt; 0)<br>    BEGIN<br>        –执行出错，回滚事务<br>        ROLLBACK TRAN;<br>        PRINT ‘转账失败，取消交易!’;<br>    END<br>ELSE<br>    BEGIN<br>        –没有异常，提交事务<br>        COMMIT TRAN;<br>        PRINT ‘转账成功!’;<br>    END</p>
 
       
 
