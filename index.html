@@ -152,41 +152,27 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-SQL-Server创建事务——锁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Untitled" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/10/SQL-Server创建事务——锁/">SQL Server创建事务</a>
+      <a class="article-title" href="/2019/06/10/Untitled/">Hexo创建随笔</a>
     </h1>
   
 
         
-        <a href="/2019/06/10/SQL-Server创建事务——锁/" class="archive-article-date">
-  	<time datetime="2019-06-10T08:06:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-10</time>
+        <a href="/2019/06/10/Untitled/" class="archive-article-date">
+  	<time datetime="2019-06-10T10:02:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>SQL Server 事务语法<br>　　事务全部是关于原子性的。原子性的概念是指可以把一些事情当做一个单元来看待。从数据库的角度看，它是指应全部执行或全部都不执行的一条或多条语句的最小组合。<br>为了理解事务的概念，需要能够定义非常明确的边界。事务要有非常明确的开始和结束点。SQL Server中的每一条SELECT、INSERT、UPDATE和DELETE语句都是隐式事务的一部分。即使只发出一条语句，也会把这条语句当做一个事务-要么执行语句中的所有内容，要么什么都不执行。但是如果需要的不只是一条，可能是多条语句呢？在这种情况下，就需要有一种方法来标记事务的开始和结束，以及事务的成功或失败。可以使用一些T-SQL语句在事务中”标记”这些点。</p>
-<p>BEGIN TRAN:设置起始点。<br>COMMIT TRAN:使事务成为数据库中永久的、不可逆转的一部分。<br>ROLLBACK TRAN:本质上说想要忘记它曾经发生过。<br>SAVE TRAN:创建一个特定标记符，只允许部分回滚。<br>一、BEGIN TRAN<br>　　事务的开始可能是事务过程中最容易理解的概念。它唯一的目的就是表示一个单元的开始。如果由于某种原因，不能或者不想提交事务，那么这就是所有数据库活动将要回滚的起点。也就是说，数据库会忽略这个起点之后的最终没有提交的所有语句。</p>
-<p>　　语法如下：</p>
-<p>　　BEGIN TRAN[SACTION] [ <transaction name> | &lt;@transaction variable&gt; ]<br>　　[ WITH MARK [&lt;’description’&gt;] ]<br>二、COMMIT TRAN<br>　　事务的提交是一个事务的终点。当发出COMMIT TRAN命令时，可以认为该事务是持久的。也就是说，事务的影响现在是持久的并会持续，即使发生系统故障也不受影响(只要有备份或者数据库文件没有被物理破坏就行)。撤销已完成事务的唯一方法是发出一个新的事务。从功能上而言，该事务是对第一个事务的反转。</transaction></p>
-<p>　　COMMIT TRAN语法如下：</p>
-<p>　　COMMIT TRAN[SACTION] [<transaction name> | &lt;@transaction variable&gt;]<br>三、ROLLBACK TRAN<br>　　ROLLBACK做的事情是回到起点。从关联的BEGIN语句开始发生的任何事情事实上都会被忘记。</transaction></p>
-<p>　　除了允许保存点外，ROLLBACK的语法看上去和BEGIN或COMMIT语句一样：</p>
-<p>　　ROLLBACK TRAN[SACTION] [ <transaction name> | <save point name> | &lt;@transaction variable&gt; | &lt;@savepoint variable&gt; ]<br>四、SAVE TRAN<br>　　保存事务从本质上说就是创建书签(bookmark)。为书签建立一个名称，在建立了”书签”之后，可以在回滚中引用它。创建书签的好处是可以回滚到代码中的特定点上-只要为想要回滚到的那个保存点命名。</save></transaction></p>
-<p>　　语法如下：</p>
-<p>　　SAVE TRAN[SCATION] [ <save point name> | &lt;@savepoint variable&gt; ]
- 　　</save></p>
-<p>复制代码<br>BEGIN TRAN Tran_Money    –开始事务</p>
-<p>DECLARE @tran_error int;<br>SET @tran_error = 0;<br>    BEGIN TRY<br>        UPDATE tb_Money SET MyMoney = MyMoney - 30 WHERE Name = ‘刘备’;<br>        SET @tran_error = @tran_error + @@ERROR;<br>        –测试出错代码，看看刘备的钱减少，关羽的钱是否会增加<br>        –SET @tran_error = 1;<br>        UPDATE tb_Money SET MyMoney = MyMoney + 30 WHERE Name = ‘关羽’;<br>        SET @tran_error = @tran_error + @@ERROR;<br>    END TRY</p>
-<p>BEGIN CATCH<br>    PRINT ‘出现异常，错误编号：’ + convert(varchar,error_number()) + ‘,错误消息：’ + error_message()<br>    SET @tran_error = @tran_error + 1<br>END CATCH</p>
-<p>IF(@tran_error &gt; 0)<br>    BEGIN<br>        –执行出错，回滚事务<br>        ROLLBACK TRAN;<br>        PRINT ‘转账失败，取消交易!’;<br>    END<br>ELSE<br>    BEGIN<br>        –没有异常，提交事务<br>        COMMIT TRAN;<br>        PRINT ‘转账成功!’;<br>    END</p>
+        <p>打开标记插件：<br><a href="http://localhost:4000/admin/" target="_blank" rel="noopener">http://localhost:4000/admin/</a><br>点击右侧setting：<br>修改Tags<br>随笔；<br>即可完成；</p>
 
       
 
@@ -195,11 +181,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/10/SQL-Server创建事务——锁/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/06/10/Untitled/">展开全文 >></a>
         </p>
       
 
@@ -516,6 +513,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
