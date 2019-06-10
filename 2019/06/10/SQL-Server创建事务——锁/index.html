@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | 超级魔方</title>
+  <title>SQL Server创建事务 | 超级魔方</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="超级魔方">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="事务定义： 事务是作为单个逻辑单元执行的一系列操作，它是一个不可分割的工作逻辑单元。它包含了一组数据库操作命令，这组命令要么全部执行，要么全部不执行。 举个例子，我们经常用到的 ATM 存取款机，比如转账的时候，是先减去转出账户的金额，然后再在指定转入账户的金额加上转出的金额。如果刚好这个时候转出的操作已经执行完成，但是由于系统的故障，导致转入的操作失败了。那么怎么办？这就需要用到事务了，只要事务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL Server创建事务">
+<meta property="og:url" content="http://yoursite.com/2019/06/10/SQL-Server创建事务——锁/index.html">
 <meta property="og:site_name" content="超级魔方">
+<meta property="og:description" content="事务定义： 事务是作为单个逻辑单元执行的一系列操作，它是一个不可分割的工作逻辑单元。它包含了一组数据库操作命令，这组命令要么全部执行，要么全部不执行。 举个例子，我们经常用到的 ATM 存取款机，比如转账的时候，是先减去转出账户的金额，然后再在指定转入账户的金额加上转出的金额。如果刚好这个时候转出的操作已经执行完成，但是由于系统的故障，导致转入的操作失败了。那么怎么办？这就需要用到事务了，只要事务">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-10T08:19:34.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="超级魔方">
+<meta name="twitter:title" content="SQL Server创建事务">
+<meta name="twitter:description" content="事务定义： 事务是作为单个逻辑单元执行的一系列操作，它是一个不可分割的工作逻辑单元。它包含了一组数据库操作命令，这组命令要么全部执行，要么全部不执行。 举个例子，我们经常用到的 ATM 存取款机，比如转账的时候，是先减去转出账户的金额，然后再在指定转入账户的金额加上转出的金额。如果刚好这个时候转出的操作已经执行完成，但是由于系统的故障，导致转入的操作失败了。那么怎么办？这就需要用到事务了，只要事务">
   
     <link rel="alternative" href="/atom.xml" title="超级魔方" type="application/atom+xml">
   
@@ -150,103 +154,188 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-SQL-Server创建事务——锁" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      SQL Server创建事务
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/10/SQL-Server创建事务——锁/" class="archive-article-date">
+
+        
+        <a href="/2019/06/10/SQL-Server创建事务——锁/" class="archive-article-date">
   	<time datetime="2019-06-10T08:06:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-10</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/10/SQL-Server创建事务——锁/">SQL Server创建事务</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>事务定义：</p>
+<p>事务是作为单个逻辑单元执行的一系列操作，它是一个不可分割的工作逻辑单元。它包含了一组数据库操作命令，这组命令要么全部执行，要么全部不执行。</p>
+<p>举个例子，我们经常用到的 ATM 存取款机，比如转账的时候，是先减去转出账户的金额，然后再在指定转入账户的金额加上转出的金额。如果刚好这个时候转出的操作已经执行完成，但是由于系统的故障，导致转入的操作失败了。那么怎么办？这就需要用到事务了，只要事务里面有一条命令未成功执行，那么数据就会回滚到事务开始之前的状态。</p>
+<p>事务特性：</p>
+<p>1、原子性（Atomicity）：事务是一个完整的操作， 事务中所有操作命令必须作为一个整体提交或回滚。如果事务中任何操作命令失败，则整个事务将因失败而回滚。</p>
+<p>2、一致性（Consistency）：当事务完成时，数据都处于一致状态。</p>
+<p>3、隔离性（Isolation）： 对数据进行修改的所有并发事务是彼此隔离的，它不以任何方式依赖或影响其他事务。</p>
+<p>4、持久性（Durability）：事务提交之后，数据是永久性的，不可再回滚。</p>
+<p>事务操作：</p>
+<p>1、begin transaction：开始事务。</p>
+<p>2、commit transaction：提交事务。</p>
+<p>3、rollback transaction：回滚事务。</p>
+<p>4、save transaction：事务保存点。即事务回滚时，可以指定回滚到保存点，而不进行全部回滚。</p>
+<p>事务分类：</p>
+<p>1、显式事务：用 begin transaction 明确指定事务的开始，由 commit transaction 提交事务、rollback transaction 回滚事务到事务结束。</p>
+<p>2、隐式事务：通过设置 set implicit_transactions on 语句，将隐式事务模式设置为打开。当以隐式事务模式操作时，不必使用 begin transaction 开启事务，当一个事务结束后，这个模式会自动启用下一个事务，只需使用 commit transaction 提交事务或 Rollback Transaction 回滚事务即可。</p>
+<p>3、自动提交事务： 这是 SQL Server 的默认模式，它将每条单独的 T-SQL 语句视为一个事务。如果成功执行，则自动提交。如果错误，则自动回滚。</p>
+<pre><code>begin tran        -- 开启事务，transcation 的简写</code></pre><p> declare @errorNo int    –定义变量，用于记录事务执行过程中的错误次数<br> set @errorNo=0<br> begin try<br>     update Student set C_S_Id=’2’ where S_StuNo=’003’<br>     set @errorNo=@errorNo+@@ERROR<br>     select ‘S_StuNo=003 已经修改啦’</p>
+<pre><code>update Student set C_S_Id=&apos;3&apos; where S_StuNo=&apos;002&apos; 
+set @errorNo=@errorNo+@@ERROR            -- @@ERROR 系统全局变量，记录错误次数，出现一次错误 @@ERROR 值+1
+select &apos;S_StuNo=002 已经修改啦&apos;
 
-        <div class="article-info info-on-right">
-          
-          
+if(@errorNo&gt;0)
+begin
+    --抛出自定义的异常,在最后的catch块中统一处理异常
+    RAISERROR(233333,16,3)
+end</code></pre><p> end try<br> begin catch<br>     select ERROR_NUMBER() errorNumber,        –错误代码<br>            ERROR_SEVERITY() errorSeverity,    –错误严重级别，级别小于10 try catch 捕获不到<br>            ERROR_STATE() errorState,        –错误状态码<br>            ERROR_PROCEDURE() errorProcedure,    –出现错误的存储过程或触发器的名称<br>            ERROR_LINE() errorLine,        –发生错误的行号<br>            ERROR_MESSAGE() errorMessage        –错误的具体信息</p>
+<pre><code>if(@@trancount&gt;0)    -- @@trancount 系统全局变量，事务开启 @@trancount 值+1，判断事务是否开启
+begin
+    rollback tran;        -- 回滚事务
+end</code></pre><p> end catch</p>
+<p> if(@@trancount&gt;0)<br> begin<br>     commit tran;        – 提交事务<br> end</p>
+<p> select * from Student</p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/10/SQL-Server创建事务——锁/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/30/Hello-hexo/" class="archive-article-date">
-  	<time datetime="2019-05-30T07:16:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/30/Hello-hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">哈希算法和时间复杂度</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/Hello-hexo/">哈希算法和时间复杂度</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/30/hello-world/" class="archive-article-date">
-  	<time datetime="2019-05-30T06:21:13.246Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +358,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
