@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo创建随笔 | 超级魔方</title>
+  <title>sqlserver时间格式转化 | 超级魔方</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="打开标记插件：http://localhost:4000/admin/点击右侧setting：修改Tags随笔；即可完成；">
-<meta name="keywords" content="随笔">
+  <meta name="description" content="最近在开发信息管理系统经常经常遇到在数据库中数据转化。特别是时间格式的转化；为了后期方便查找现收集整合如下以备后期使用：语句及查询结果：SELECT CONVERT(varchar(100), GETDATE(), 0): 05 16 2006 10:57AM SELECT CONVERT(varchar(100), GETDATE(), 1): 05/16/06 SELECT CONVERT(v">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo创建随笔">
-<meta property="og:url" content="http://yoursite.com/2019/06/10/Untitled/index.html">
+<meta property="og:title" content="sqlserver时间格式转化">
+<meta property="og:url" content="http://yoursite.com/2019/06/11/sqlserver时间格式转化/index.html">
 <meta property="og:site_name" content="超级魔方">
-<meta property="og:description" content="打开标记插件：http://localhost:4000/admin/点击右侧setting：修改Tags随笔；即可完成；">
+<meta property="og:description" content="最近在开发信息管理系统经常经常遇到在数据库中数据转化。特别是时间格式的转化；为了后期方便查找现收集整合如下以备后期使用：语句及查询结果：SELECT CONVERT(varchar(100), GETDATE(), 0): 05 16 2006 10:57AM SELECT CONVERT(varchar(100), GETDATE(), 1): 05/16/06 SELECT CONVERT(v">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-10T10:17:21.635Z">
+<meta property="og:updated_time" content="2019-06-11T06:07:09.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo创建随笔">
-<meta name="twitter:description" content="打开标记插件：http://localhost:4000/admin/点击右侧setting：修改Tags随笔；即可完成；">
+<meta name="twitter:title" content="sqlserver时间格式转化">
+<meta name="twitter:description" content="最近在开发信息管理系统经常经常遇到在数据库中数据转化。特别是时间格式的转化；为了后期方便查找现收集整合如下以备后期使用：语句及查询结果：SELECT CONVERT(varchar(100), GETDATE(), 0): 05 16 2006 10:57AM SELECT CONVERT(varchar(100), GETDATE(), 1): 05/16/06 SELECT CONVERT(v">
   
     <link rel="alternative" href="/atom.xml" title="超级魔方" type="application/atom+xml">
   
@@ -155,27 +154,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Untitled" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-sqlserver时间格式转化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hexo创建随笔
+      sqlserver时间格式转化
     </h1>
   
 
         
-        <a href="/2019/06/10/Untitled/" class="archive-article-date">
-  	<time datetime="2019-06-10T10:02:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-10</time>
+        <a href="/2019/06/11/sqlserver时间格式转化/" class="archive-article-date">
+  	<time datetime="2019-06-11T06:02:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>打开标记插件：<br><a href="http://localhost:4000/admin/" target="_blank" rel="noopener">http://localhost:4000/admin/</a><br>点击右侧setting：<br>修改Tags<br>随笔；<br>即可完成；</p>
+        <p>最近在开发信息管理系统经常经常遇到在数据库中数据转化。特别是时间格式的转化；为了后期方便查找现收集整合如下以备后期使用：<br>语句及查询结果：<br>SELECT CONVERT(varchar(100), GETDATE(), 0): 05 16 2006 10:57AM</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 1): 05/16/06</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 2): 06.05.16</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 3): 16/05/06</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 4): 16.05.06</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 5): 16-05-06</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 6): 16 05 06</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 7): 05 16, 06</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 8): 10:57:46</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 9): 05 16 2006 10:57:46:827AM</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 10): 05-16-06</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 11): 06/05/16</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 12): 060516</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 13): 16 05 2006 10:57:46:937</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 14): 10:57:46:967</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 20): 2006-05-16 10:57:47</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 21): 2006-05-16 10:57:47.157</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 22): 05/16/06 10:57:47 AM</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 23): 2006-05-16</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 24): 10:57:47</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 25): 2006-05-16 10:57:47.250</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 100): 05 16 2006 10:57AM</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 101): 05/16/2006</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 102): 2006.05.16</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 103): 16/05/2006</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 104): 16.05.2006</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 105): 16-05-2006</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 106): 16 05 2006</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 107): 05 16, 2006</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 108): 10:57:49</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 109): 05 16 2006 10:57:49:437AM</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 110): 05-16-2006</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 111): 2006/05/16</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 112): 20060516</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 113): 16 05 2006 10:57:49:513</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 114): 10:57:49:547</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 120): 2006-05-16 10:57:49</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 121): 2006</p>
+<p>SELECT CONVERT(varchar(100), GETDATE(), 126): 2006-05-16T10:57:49.827</p>
 
       
 
@@ -205,17 +242,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -266,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/10/Untitled/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/11/sqlserver时间格式转化/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -280,18 +306,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/11/sqlserver时间格式转化/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          sqlserver时间格式转化
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/05/30/Hello-hexo/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">哈希算法和时间复杂度</div>
+    <a href="/2019/06/10/Untitled/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo创建随笔</div>
       <i class="icon-circle-right"></i>
     </a>
   
