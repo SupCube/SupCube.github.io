@@ -9,13 +9,14 @@
   <title>C# Lock 字符串 | 超级魔方</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近在开发项目中遇到了需要防止某个人的操作并发问题，因此考虑到加锁；问题来了：如果只是对需要操作的地方 加全局锁，必然影响系统整体吨吐量；代码如下： class Test {     private  object objlock = new object();     public void FuncA(string usercode)     {         lock(objlock)">
+<meta name="keywords" content="C#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C# Lock 字符串">
 <meta property="og:url" content="http://yoursite.com/2019/06/14/Untitled/index.html">
 <meta property="og:site_name" content="超级魔方">
 <meta property="og:description" content="最近在开发项目中遇到了需要防止某个人的操作并发问题，因此考虑到加锁；问题来了：如果只是对需要操作的地方 加全局锁，必然影响系统整体吨吐量；代码如下： class Test {     private  object objlock = new object();     public void FuncA(string usercode)     {         lock(objlock)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-18T09:51:08.391Z">
+<meta property="og:updated_time" content="2019-06-18T09:54:49.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C# Lock 字符串">
 <meta name="twitter:description" content="最近在开发项目中遇到了需要防止某个人的操作并发问题，因此考虑到加锁；问题来了：如果只是对需要操作的地方 加全局锁，必然影响系统整体吨吐量；代码如下： class Test {     private  object objlock = new object();     public void FuncA(string usercode)     {         lock(objlock)">
@@ -167,7 +168,7 @@
 
         
         <a href="/2019/06/14/Untitled/" class="archive-article-date">
-  	<time datetime="2019-06-14T07:20:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-14</time>
+  	<time datetime="2019-06-14T07:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-14</time>
 </a>
         
       </header>
@@ -186,7 +187,7 @@
         }
     }
 }</code></pre><p>这样固然可以但是发现所有的用户共用了一把锁，严重影响吞吐量于是决定优化。于是决定每人一把锁，<br>修改代码如下：</p>
-<pre><code>   class Test
+<pre><code>  class Test
 {
     public void FuncA(string usercode)
     {
@@ -245,6 +246,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -437,11 +449,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SqlServer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color3">C#</a>
               </li>
             
             <div class="clearfix"></div>
