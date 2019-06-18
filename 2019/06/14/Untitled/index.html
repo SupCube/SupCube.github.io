@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Redis命令 | 超级魔方</title>
+  <title>C# Lock 字符串 | 超级魔方</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.基于内存的key-value数据库2.基于c语言编写的，可以支持多种语言的api //set每秒11万次，取get 81000次3.支持数据持久化4.value可以是string，hash， list， set, sorted set 使用场景  去最新n个数据的操作 排行榜，取top n个数据 //最佳人气前10条 精确的设置过期时间 计数器 实时系统， 反垃圾系统 pub， sub发布订阅">
-<meta name="keywords" content="Redis">
+  <meta name="description" content="最近在开发项目中遇到了需要防止某个人的操作并发问题，因此考虑到加锁；问题来了：如果只是对需要操作的地方 加全局锁，必然影响系统整体吨吐量；代码如下：    class Test    {     private  object objlock = new object();     public void FuncA(string usercode)     {         lock(objl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis命令">
-<meta property="og:url" content="http://yoursite.com/2019/06/13/Redis命令/index.html">
+<meta property="og:title" content="C# Lock 字符串">
+<meta property="og:url" content="http://yoursite.com/2019/06/14/Untitled/index.html">
 <meta property="og:site_name" content="超级魔方">
-<meta property="og:description" content="1.基于内存的key-value数据库2.基于c语言编写的，可以支持多种语言的api //set每秒11万次，取get 81000次3.支持数据持久化4.value可以是string，hash， list， set, sorted set 使用场景  去最新n个数据的操作 排行榜，取top n个数据 //最佳人气前10条 精确的设置过期时间 计数器 实时系统， 反垃圾系统 pub， sub发布订阅">
+<meta property="og:description" content="最近在开发项目中遇到了需要防止某个人的操作并发问题，因此考虑到加锁；问题来了：如果只是对需要操作的地方 加全局锁，必然影响系统整体吨吐量；代码如下：    class Test    {     private  object objlock = new object();     public void FuncA(string usercode)     {         lock(objl">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-14T05:56:53.127Z">
+<meta property="og:updated_time" content="2019-06-18T09:45:42.238Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis命令">
-<meta name="twitter:description" content="1.基于内存的key-value数据库2.基于c语言编写的，可以支持多种语言的api //set每秒11万次，取get 81000次3.支持数据持久化4.value可以是string，hash， list， set, sorted set 使用场景  去最新n个数据的操作 排行榜，取top n个数据 //最佳人气前10条 精确的设置过期时间 计数器 实时系统， 反垃圾系统 pub， sub发布订阅">
+<meta name="twitter:title" content="C# Lock 字符串">
+<meta name="twitter:description" content="最近在开发项目中遇到了需要防止某个人的操作并发问题，因此考虑到加锁；问题来了：如果只是对需要操作的地方 加全局锁，必然影响系统整体吨吐量；代码如下：    class Test    {     private  object objlock = new object();     public void FuncA(string usercode)     {         lock(objl">
   
     <link rel="alternative" href="/atom.xml" title="超级魔方" type="application/atom+xml">
   
@@ -155,71 +154,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Redis命令" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Untitled" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Redis命令
+      C# Lock 字符串
     </h1>
   
 
         
-        <a href="/2019/06/13/Redis命令/" class="archive-article-date">
-  	<time datetime="2019-06-13T09:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-13</time>
+        <a href="/2019/06/14/Untitled/" class="archive-article-date">
+  	<time datetime="2019-06-14T07:20:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.基于内存的key-value数据库<br>2.基于c语言编写的，可以支持多种语言的api //set每秒11万次，取get 81000次<br>3.支持数据持久化<br>4.value可以是string，hash， list， set, sorted set</p>
-<p>使用场景</p>
-<ol>
-<li>去最新n个数据的操作</li>
-<li>排行榜，取top n个数据 //最佳人气前10条</li>
-<li>精确的设置过期时间</li>
-<li>计数器</li>
-<li>实时系统， 反垃圾系统</li>
-<li>pub， sub发布订阅构建实时消息系统</li>
-<li>构建消息队列</li>
-<li>缓存</li>
-</ol>
-<p>cmd访问redis<br>redis-cli.exe -h 127.0.0.1 -p 6379</p>
-<p>key<br>    keys * 获取所有的key<br>    select 0 选择第一个库<br>    move myString 1 将当前的数据库key移动到某个数据库,目标库有，则不能移动<br>    flush db      清除指定库<br>    randomkey     随机key<br>    type key      类型</p>
-<pre><code>set key1 value1 设置key
-get key1    获取key
-mset key1 value1 key2 value2 key3 value3
-mget key1 key2 key3
-del key1   删除key
-exists key      判断是否存在key
-expire key 10   10过期
-pexpire key 1000 毫秒
-persist key     删除过期时间</code></pre><p>string<br>    set name cxx<br>    get name<br>    getrange name 0 -1        字符串分段<br>    getset name new_cxx       设置值，返回旧值<br>    mset key1 key2            批量设置<br>    mget key1 key2            批量获取<br>    setnx key value           不存在就插入（not exists）<br>    setex key time value      过期时间（expire）<br>    setrange key index value  从index开始替换value<br>    incr age        递增<br>    incrby age 10   递增<br>    decr age        递减<br>    decrby age 10   递减<br>    incrbyfloat     增减浮点数<br>    append          追加<br>    strlen          长度<br>    getbit/setbit/bitcount/bitop    位操作</p>
-<p>hash<br>    hset myhash name cxx<br>    hget myhash name<br>    hmset myhash name cxx age 25 note “i am notes”<br>    hmget myhash name age note<br>    hgetall myhash               获取所有的<br>    hexists myhash name          是否存在<br>    hsetnx myhash score 100      设置不存在的<br>    hincrby myhash id 1          递增<br>    hdel myhash name             删除<br>    hkeys myhash                 只取key<br>    hvals myhash                 只取value<br>    hlen myhash                  长度</p>
-<p>list<br>    lpush mylist a b c  左插入<br>    rpush mylist x y z  右插入<br>    lrange mylist 0 -1  数据集合<br>    lpop mylist  弹出元素<br>    rpop mylist  弹出元素<br>    llen mylist  长度<br>    lrem mylist count value  删除<br>    lindex mylist 2          指定索引的值<br>    lset mylist 2 n          索引设值<br>    ltrim mylist 0 4         删除key<br>    linsert mylist before a  插入<br>    linsert mylist after a   插入<br>    rpoplpush list list2     转移列表的数据</p>
-<p>set<br>    sadd myset redis<br>    smembers myset       数据集合<br>    srem myset set1         删除<br>    sismember myset set1 判断元素是否在集合中<br>    scard key_name       个数<br>    sdiff | sinter | sunion 操作：集合间运算：差集 | 交集 | 并集<br>    srandmember          随机获取集合中的元素<br>    spop                 从集合中弹出一个元素</p>
-<p>zset<br>    zadd zset 1 one<br>    zadd zset 2 two<br>    zadd zset 3 three<br>    zincrby zset 1 one              增长分数<br>    zscore zset two                 获取分数<br>    zrange zset 0 -1 withscores     范围值<br>    zrangebyscore zset 10 25 withscores 指定范围的值<br>    zrangebyscore zset 10 25 withscores limit 1 2 分页<br>    Zrevrangebyscore zset 10 25 withscores  指定范围的值<br>    zcard zset  元素数量<br>    Zcount zset 获得指定分数范围内的元素个数<br>    Zrem zset one two        删除一个或多个元素<br>    Zremrangebyrank zset 0 1  按照排名范围删除元素<br>    Zremrangebyscore zset 0 1 按照分数范围删除元素<br>    Zrank zset 0 -1    分数最小的元素排名为0<br>    Zrevrank zset 0 -1  分数最大的元素排名为0<br>    Zinterstore<br>   zunionstore rank:last_week 7 rank:20150312 rank:20150324 rank:20150325 weights 1 2 1 2 1 2 1<br>排序：<br>    sort mylist  排序<br>    sort mylist alpha desc limit 0 2 字母排序<br>    sort list by it:* desc           by命令<br>    sort list by it:* desc get it:*  get参数<br>    sort list by it:* desc get it:* store sorc:result  sort命令之store参数：表示把sort查询的结果集保存起来</p>
-<p>订阅与发布：<br>    订阅频道：subscribe chat1<br>    发布消息：publish chat1 “hell0 ni hao”<br>    查看频道：pubsub channels<br>    查看某个频道的订阅者数量: pubsub numsub chat1<br>    退订指定频道： unsubscrible chat1   , punsubscribe java.*
-    订阅一组频道： psubscribe java.*</p>
-<p>redis事物：<br>     隔离性，原子性，<br>     步骤：  开始事务，执行命令，提交事务<br>             multi  //开启事务<br>             sadd myset a b c<br>             sadd myset e f g<br>             lpush mylist aa bb cc<br>             lpush mylist dd ff gg</p>
-<p>服务器管理<br>    dump.rdb<br>    appendonly.aof<br>    //BgRewriteAof 异步执行一个aop(appendOnly file)文件重写<br>    会创建当前一个AOF文件体积的优化版本</p>
-<pre><code>//BgSave 后台异步保存数据到磁盘，会在当前目录下创建文件dump.rdb
-//save同步保存数据到磁盘，会阻塞主进程，别的客户端无法连接
-
-//client kill 关闭客户端连接
-//client list 列出所有的客户端
-
-//给客户端设置一个名称
-  client setname myclient1
-  client getname
-
- config get port
- //configRewrite 对redis的配置文件进行改写</code></pre><p>rdb<br>save 900 1<br>save 300 10<br>save 60 10000</p>
-<p>aop备份处理<br>appendonly yes 开启持久化<br>appendfsync everysec 每秒备份一次</p>
-<p>命令：<br>bgsave异步保存数据到磁盘（快照保存）<br>lastsave返回上次成功保存到磁盘的unix的时间戳<br>shutdown同步保存到服务器并关闭redis服务器<br>bgrewriteaof文件压缩处理（命令）</p>
+        <p>最近在开发项目中遇到了需要防止某个人的操作并发问题，因此考虑到加锁；<br>问题来了：<br>如果只是对需要操作的地方 加全局锁，必然影响系统整体吨吐量；<br>代码如下：<br>    class Test<br>    {</p>
+<pre><code>    private  object objlock = new object();
+    public void FuncA(string usercode)
+    {
+        lock(objlock)
+        {
+            //执行操作
+        }
+    }
+}</code></pre><p>这样固然可以但是发现所有的用户都被加上了锁，严重影响吞吐量于是决定优化，每人一把锁，修改代码如下：</p>
+<p>   class Test<br>    {</p>
+<pre><code>    public void FuncA(string usercode)
+    {
+        lock(usercode)
+        {
+            //执行操作
+        }
+    }
+}</code></pre><p> 但是经过测试锁定无效，并发问题仍然存在，后来经过排查发现问题之所在lock锁定字符串每个字符串再内存中都是一个不同的对象，类似于每人都有一把锁。这当然起不到加锁的目的，经过查阅资料修改代码如下：</p>
+<p>  class Test<br>    {</p>
+<pre><code>    public void FuncA(string usercode)
+    {
+        lock(string.Intern(usercode))
+        {
+            //执行操作
+        }
+    }
+}</code></pre><p>经过测试发现问题解决。string.Intern 内部是实例化一个池子如果字符串值一样的对象系统就不会实例化，因此问题解决；</p>
 
       
 
@@ -259,17 +241,6 @@ persist key     删除过期时间</code></pre><p>string<br>    set name cxx<br>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -320,7 +291,7 @@ persist key     删除过期时间</code></pre><p>string<br>    set name cxx<br>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/13/Redis命令/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/14/Untitled/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -334,18 +305,9 @@ persist key     删除过期时间</code></pre><p>string<br>    set name cxx<br>
   
 <nav id="article-nav">
   
-    <a href="/2019/06/14/Untitled/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C# Lock 字符串
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/11/Sqlserver操作提示主体“dbo”不存/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Sqlserver操作提示主体“dbo”不存</div>
+    <a href="/2019/06/13/Redis命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
