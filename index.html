@@ -172,10 +172,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近在开发项目中遇到了需要防止某个人的操作并发问题，因此考虑到加锁；<br>问题来了：<br>如果只是对需要操作的地方 加全局锁，必然影响系统整体吨吐量；<br>代码如下：</p>
+        <p>最近在开发项目中遇到了需要防止某个人的操作并发的问题，因此考虑到加锁；<br>问题来了：<br>如果只是对需要操作的地方 加全局锁，必然影响系统整体吞吐量；<br>代码如下：</p>
 <pre><code>class Test
 {
-    private  object objlock = new object();
+    private static object objlock = new object();
     public void FuncA(string usercode)
     {
         lock(objlock)
@@ -183,7 +183,7 @@
             //执行操作
         }
     }
-}</code></pre><p>这样固然可以但是发现所有的用户共用了一把锁，严重影响吞吐量于是决定优化。于是决定每人一把锁，<br>修改代码如下：</p>
+}</code></pre><p>这样固然可以但是发现所有的用户共用了一把锁，严重影响吞吐量于是决定优化。决定每人一把锁，<br>修改代码如下：</p>
 <pre><code>  class Test
 {
     public void FuncA(string usercode)
@@ -203,7 +203,7 @@
             //执行操作
         }
     }
-}</code></pre><p>经过测试发现问题解决。string.Intern 内部是实例化一个池子如果字符串值一样的对象系统就不会实例化，因此问题解决；</p>
+}</code></pre><p>经过测试发现问题解决。string.Intern 内部是实例化一个池子如果字符串值一致则系统就不会实例化，直切取出对象，因此问题解决；</p>
 
       
 
@@ -931,7 +931,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color3">C#</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -939,7 +939,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">C#</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
             
             <div class="clearfix"></div>
