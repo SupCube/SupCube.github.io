@@ -152,6 +152,135 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C-扩展方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/24/C-扩展方法/">C#扩展方法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/24/C-扩展方法/" class="archive-article-date">
+  	<time datetime="2019-06-24T09:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。</p>
+<p>按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数；</p>
+<p>如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下：</p>
+<pre><code>public class Program
+{
+    /// &lt;summary&gt;
+    /// 方法如下
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;inputNum&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    private static int GetNum(string inputNum)
+    {
+        int result;
+        int.TryParse(inputNum, out result);
+        return result;
+    }
+    /// &lt;summary&gt;
+    /// 测试
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;args&quot;&gt;&lt;/param&gt;
+    static void Main(string[] args)
+    {
+        string test1 = &quot;123&quot;;
+        Console.WriteLine(GetNum(test1));
+    }
+}</code></pre><p> 但是能否有其他更“高大上”的方法呢：我们可以扩展方法。对字符串String扩展方法。代码如下：</p>
+<pre><code>/// &lt;summary&gt;
+/// 扩展类
+/// &lt;/summary&gt;
+public static class SupExtString
+{
+    public static int ToInt(this string inputNum)
+    {
+        int result=0;
+        int.TryParse(inputNum, out result);
+        return result;
+    }
+}</code></pre><p>然后调用类如下：</p>
+<pre><code>public class Program
+{
+
+    /// &lt;summary&gt;
+    /// 测试
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;args&quot;&gt;&lt;/param&gt;
+    static void Main(string[] args)
+    {
+        string test1 = &quot;123&quot;;
+        Console.WriteLine(test1.ToInt());
+    }
+}</code></pre><p>在扩展方法的时候需要注意事项如下：</p>
+<p>1.扩展方法必须在静态类中。</p>
+<p>2.扩展方法必须是静态方法。</p>
+<p>3.需要扩展的数据类型应用this关键字修饰并作为第一个参数传递。</p>
+<p>4.如果扩展方法有参数时：参数要放到this修饰的参数之后。（上述例子是0参的实现方式）；</p>
+<p>5.引用的时候需要应用到扩展类的命名空间即可。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">c#</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/24/C-扩展方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Dapper事物操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1049,11 +1178,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">C#</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color3">c#</a>
               </li>
             
             <div class="clearfix"></div>

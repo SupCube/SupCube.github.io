@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Sqlserver操作提示主体“dbo”不存 | 超级魔方</title>
+  <title>C#扩展方法 | 超级魔方</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="开发过程中遇到数据库问题：比如备份数据库之后，导入新库中打不开：提示 “无法作为数据库主题执行,因为主体 “dbo”不存在……” 这一般都是权限问题： 解决方案如下： 选择“数据库”，右键，选择“属性”，选择“文件”页，点击“所有者”右侧按钮，点击“浏览”按钮，选择当前登录用户即可解决；">
-<meta name="keywords" content="SqlServer">
+  <meta name="description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。 按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数； 如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary">
+<meta name="keywords" content="c#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sqlserver操作提示主体“dbo”不存">
-<meta property="og:url" content="http://yoursite.com/2019/06/11/Sqlserver操作提示主体“dbo”不存/index.html">
+<meta property="og:title" content="C#扩展方法">
+<meta property="og:url" content="http://yoursite.com/2019/06/24/C-扩展方法/index.html">
 <meta property="og:site_name" content="超级魔方">
-<meta property="og:description" content="开发过程中遇到数据库问题：比如备份数据库之后，导入新库中打不开：提示 “无法作为数据库主题执行,因为主体 “dbo”不存在……” 这一般都是权限问题： 解决方案如下： 选择“数据库”，右键，选择“属性”，选择“文件”页，点击“所有者”右侧按钮，点击“浏览”按钮，选择当前登录用户即可解决；">
+<meta property="og:description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。 按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数； 如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-14T03:53:55.390Z">
+<meta property="og:updated_time" content="2019-06-24T10:12:03.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sqlserver操作提示主体“dbo”不存">
-<meta name="twitter:description" content="开发过程中遇到数据库问题：比如备份数据库之后，导入新库中打不开：提示 “无法作为数据库主题执行,因为主体 “dbo”不存在……” 这一般都是权限问题： 解决方案如下： 选择“数据库”，右键，选择“属性”，选择“文件”页，点击“所有者”右侧按钮，点击“浏览”按钮，选择当前登录用户即可解决；">
+<meta name="twitter:title" content="C#扩展方法">
+<meta name="twitter:description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。 按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数； 如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary">
   
     <link rel="alternative" href="/atom.xml" title="超级魔方" type="application/atom+xml">
   
@@ -155,31 +155,82 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Sqlserver操作提示主体“dbo”不存" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C-扩展方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Sqlserver操作提示主体“dbo”不存
+      C#扩展方法
     </h1>
   
 
         
-        <a href="/2019/06/11/Sqlserver操作提示主体“dbo”不存/" class="archive-article-date">
-  	<time datetime="2019-06-11T08:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-11</time>
+        <a href="/2019/06/24/C-扩展方法/" class="archive-article-date">
+  	<time datetime="2019-06-24T09:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>开发过程中遇到数据库问题：</strong><br>比如备份数据库之后，导入新库中打不开：提示</p>
-<p><em>“无法作为数据库主题执行,因为主体 “dbo”不存在……”</em></p>
-<p><strong>这一般都是权限问题：</strong></p>
-<p>解决方案如下：</p>
-<p>选择“数据库”，右键，选择“属性”，选择“文件”页，点击“所有者”右侧按钮，点击“浏览”按钮，选择当前登录用户即可解决；</p>
+        <p>在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。</p>
+<p>按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数；</p>
+<p>如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下：</p>
+<pre><code>public class Program
+{
+    /// &lt;summary&gt;
+    /// 方法如下
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;inputNum&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    private static int GetNum(string inputNum)
+    {
+        int result;
+        int.TryParse(inputNum, out result);
+        return result;
+    }
+    /// &lt;summary&gt;
+    /// 测试
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;args&quot;&gt;&lt;/param&gt;
+    static void Main(string[] args)
+    {
+        string test1 = &quot;123&quot;;
+        Console.WriteLine(GetNum(test1));
+    }
+}</code></pre><p> 但是能否有其他更“高大上”的方法呢：我们可以扩展方法。对字符串String扩展方法。代码如下：</p>
+<pre><code>/// &lt;summary&gt;
+/// 扩展类
+/// &lt;/summary&gt;
+public static class SupExtString
+{
+    public static int ToInt(this string inputNum)
+    {
+        int result=0;
+        int.TryParse(inputNum, out result);
+        return result;
+    }
+}</code></pre><p>然后调用类如下：</p>
+<pre><code>public class Program
+{
+
+    /// &lt;summary&gt;
+    /// 测试
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;args&quot;&gt;&lt;/param&gt;
+    static void Main(string[] args)
+    {
+        string test1 = &quot;123&quot;;
+        Console.WriteLine(test1.ToInt());
+    }
+}</code></pre><p>在扩展方法的时候需要注意事项如下：</p>
+<p>1.扩展方法必须在静态类中。</p>
+<p>2.扩展方法必须是静态方法。</p>
+<p>3.需要扩展的数据类型应用this关键字修饰并作为第一个参数传递。</p>
+<p>4.如果扩展方法有参数时：参数要放到this修饰的参数之后。（上述例子是0参的实现方式）；</p>
+<p>5.引用的时候需要应用到扩展类的命名空间即可。</p>
 
       
 
@@ -224,7 +275,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SqlServer</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">c#</a>
         		</li>
       		
 		</ul>
@@ -280,7 +331,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/11/Sqlserver操作提示主体“dbo”不存/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/24/C-扩展方法/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +345,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/13/Redis命令/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Redis命令
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/11/sqlserver时间格式转化/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">sqlserver时间格式转化</div>
+    <a href="/2019/06/21/Dapper事物操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Dapper事物操作</div>
       <i class="icon-circle-right"></i>
     </a>
   
