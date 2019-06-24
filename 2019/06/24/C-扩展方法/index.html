@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>C#扩展方法 | 超级魔方</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。 按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数； 如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary">
+  <meta name="description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数；如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary&amp;g">
 <meta name="keywords" content="c#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C#扩展方法">
 <meta property="og:url" content="http://yoursite.com/2019/06/24/C-扩展方法/index.html">
 <meta property="og:site_name" content="超级魔方">
-<meta property="og:description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。 按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数； 如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary">
+<meta property="og:description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数；如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary&amp;g">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-24T10:12:03.001Z">
+<meta property="og:updated_time" content="2019-06-24T10:37:24.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C#扩展方法">
-<meta name="twitter:description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。 按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数； 如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary">
+<meta name="twitter:description" content="在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数；如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下： public class Program {     /// &amp;lt;summary&amp;g">
   
     <link rel="alternative" href="/atom.xml" title="超级魔方" type="application/atom+xml">
   
@@ -175,9 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。</p>
-<p>按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数；</p>
-<p>如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下：</p>
+        <p>在开发过程中，经常需要对相同的某个类型的数据进行处理。譬如：字符串自定义转化、时间格式的自定义转化等。<br>按照正常的开发我们需要定义一个方法，用原始的数据作为参数实体，然后在方法内部处理，然后返回处理之后的参数；<br>如：需要对一个字符串处理处理成int类型，如果字符串合法则返回数据，如果不合法则返回0。开发代码如下：</p>
 <pre><code>public class Program
 {
     /// &lt;summary&gt;
@@ -225,12 +223,7 @@ public static class SupExtString
         string test1 = &quot;123&quot;;
         Console.WriteLine(test1.ToInt());
     }
-}</code></pre><p>在扩展方法的时候需要注意事项如下：</p>
-<p>1.扩展方法必须在静态类中。</p>
-<p>2.扩展方法必须是静态方法。</p>
-<p>3.需要扩展的数据类型应用this关键字修饰并作为第一个参数传递。</p>
-<p>4.如果扩展方法有参数时：参数要放到this修饰的参数之后。（上述例子是0参的实现方式）；</p>
-<p>5.引用的时候需要应用到扩展类的命名空间即可。</p>
+}</code></pre><p>在扩展方法的时候需要注意事项如下：<br>1.扩展方法必须在静态类中。<br>2.扩展方法必须是静态方法。<br>3.需要扩展的数据类型应用this关键字修饰并作为第一个参数传递。<br>4.如果扩展方法有参数时：参数要放到this修饰的参数之后。（上述例子是0参的实现方式）；<br>5.引用的时候需要应用到扩展类的命名空间即可。</p>
 
       
 
