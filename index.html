@@ -152,6 +152,146 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C-多线程Thread-Task-Parallel用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/25/C-多线程Thread-Task-Parallel用法/">C#多线程Thread-Task-Parallel用法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/25/C-多线程Thread-Task-Parallel用法/" class="archive-article-date">
+  	<time datetime="2019-06-25T05:29:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大家在开发过程中，往往会为了提高用户体验，某些功能会采用异步进行。譬如：一个定时服务，以及用户登录日志等。这些操作在执行过程中用户不需要要等待其执行结束。对此引入了多线程处理方式。在此小编就之前用过的几种方式总结下；</p>
+<p>1.Thread用法：<br>Thread是多线程最基本的操作方式；</p>
+<pre><code>using System;
+using System.Threading;
+namespace TestSupCube
+{
+class TestSuper
+{
+  static void TestThread()
+  {
+   //执行一些列操作  
+  }
+  static void Main(string[] args)
+  {
+      Thread mthread = new Thread(TestTrhead);
+      mthread.Start();
+      Console.WriteLine(&quot;SupCube Test Thread&quot;);
+      Console.ReadLine();
+  }
+}
+}</code></pre><p>1.需要首先定义方法。<br>2.实例化线程引用该方法；<br>3.启动线程；</p>
+<p>2.Task用法：Task是Thread的封装因此用法 几乎一样：</p>
+<pre><code>using System;
+using System.Threading.Tasks;
+namespace TestSupCube
+{
+class TestSuper
+{
+    static void TestTask()
+    {
+     //执行一些列操作  
+    }
+    static void Main(string[] args)
+    {
+    Task mtask = new Task(TestTask);
+    mtask.Start();
+    Console.WriteLine(&quot;SupCube Test Task&quot;);
+    Console.ReadLine();
+    }
+}
+}</code></pre><p>  =============================缺省方法如下：=====================================</p>
+<pre><code>   static void Main(string[] args)
+{
+    Task mtask = new Task(() =&gt;
+        {
+            //执行一些列操作  
+        });
+    mtask.Start();
+    Console.WriteLine(&quot;SupCube Test Thread&quot;);
+    Console.ReadLine();
+}</code></pre><p> Task是支持多核的因此如果是多核cpu效率很高很多；<br> 3.Parallel用法：</p>
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+namespace TestSupCube
+{
+class TestSuper
+{
+    static void TestTask(int num)
+    {
+        //执行一些列操作  
+    }
+    static void Main(string[] args)
+    {
+        List&lt;string&gt; listtask = new List&lt;string&gt;() { 1, 2, 3, 4, 5 };
+        Parallel.ForEach(listtask, new ParallelOptions
+        {
+            MaxDegreeOfParallelism = 3//开启线程数
+        },
+        x =&gt;
+        {
+            TestTask(x);
+        });
+        Console.WriteLine(&quot;SupCube Test Parallel&quot;);
+        Console.ReadLine();
+    }
+}
+}</code></pre><p>Parallel适用于：<br>并行处理多个作业，内部支持线程数控制；</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/25/C-多线程Thread-Task-Parallel用法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C-扩展方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1167,15 +1307,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">c#</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SqlServer</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">c#</a>
               </li>
              
               <li class="article-tag-list-item">
